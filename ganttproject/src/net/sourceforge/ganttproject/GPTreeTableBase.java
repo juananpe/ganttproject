@@ -58,6 +58,7 @@ import javax.swing.event.TableColumnModelEvent;
 import javax.swing.event.TableColumnModelListener;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
@@ -70,6 +71,7 @@ import java.awt.event.AdjustmentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -95,6 +97,20 @@ public abstract class GPTreeTableBase extends JXTreeTable implements CustomPrope
       super.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
   };
+
+  static class DecimalFormatRenderer extends DefaultTableCellRenderer {
+    private static final DecimalFormat formatter = new DecimalFormat( "#0.00" );
+
+    public Component getTableCellRendererComponent(
+            JTable table, Object value, boolean isSelected,
+            boolean hasFocus, int row, int column) {
+
+      value = formatter.format((Number)value);
+
+      return super.getTableCellRendererComponent(
+              table, value, isSelected, hasFocus, row, column );
+    }
+  }
 
   private GPAction myEditCellAction = new GPAction("tree.edit") {
     @Override
@@ -926,6 +942,9 @@ public abstract class GPTreeTableBase extends JXTreeTable implements CustomPrope
     // renderer = TableCellRenderers.getNewDefaultRenderer(columnClass);
     //
     // }
+    if (Double.class.equals(columnClass)){
+      return new DecimalFormatRenderer();
+    }
     return getTreeTable().getDefaultRenderer(columnClass);
   }
 
