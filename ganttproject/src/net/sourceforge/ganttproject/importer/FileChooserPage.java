@@ -81,6 +81,11 @@ class FileChooserPage extends AbstractFileChooserPage {
         @Override
         public void run() {
           myImporter.run();
+
+          if (myFile != null) {
+            getPreferences().put(AbstractFileChooserPage.PREF_SELECTED_FILE, myFile.getAbsolutePath());
+          }
+
         }
       });
     } else {
