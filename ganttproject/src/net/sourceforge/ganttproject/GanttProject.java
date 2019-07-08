@@ -980,40 +980,39 @@ public class GanttProject extends GanttProjectBase implements ResourceView, Gant
 
     Runnable autosaveCleanup = DocumentCreator.createAutosaveCleanup();
 
-    final CompletableFuture<Runnable> splashCloser = SplashKt.showAsync();
-    try {
-      Thread.sleep(1000);
-    } catch (InterruptedException e1) {
-      GPLogger.log(e1);
-    }
-
+      final CompletableFuture<Runnable> splashCloser = SplashKt.showAsync();
+//    try {
+//      Thread.sleep(1000);
+//    } catch (InterruptedException e1) {
+//      GPLogger.log(e1);
+//    }
 
     AtomicReference<GanttProject> mainWindow = new AtomicReference<>(null);
     SwingUtilities.invokeLater(() -> {
-      try {
+//      try {
         GanttProject ganttFrame = new GanttProject(false);
         System.err.println("Main frame created");
         mainWindow.set(ganttFrame);
-        ganttFrame.addWindowListener(new WindowAdapter() {
-          @Override
-          public void windowOpened(WindowEvent e) {
-            try {
-              splashCloser.get().run();
-            } catch (Exception ex) {
-              ex.printStackTrace();
-            }
-          }
-        });
-      } catch (Throwable e) {
-        e.printStackTrace();
-      } finally {
-        Thread.currentThread().setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
-          @Override
-          public void uncaughtException(Thread t, Throwable e) {
-            GPLogger.log(e);
-          }
-        });
-      }
+//        ganttFrame.addWindowListener(new WindowAdapter() {
+//          @Override
+//          public void windowOpened(WindowEvent e) {
+//            try {
+//             splashCloser.get().run();
+//            } catch (Exception ex) {
+//              ex.printStackTrace();
+//            }
+//          }
+//        });
+//      } catch (Throwable e) {
+//        e.printStackTrace();
+//      } finally {
+//        Thread.currentThread().setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+//          @Override
+//          public void uncaughtException(Thread t, Throwable e) {
+//            GPLogger.log(e);
+//          }
+//        });
+//      }
     });
 
     SwingUtilities.invokeLater(() -> mainWindow.get().doShow());

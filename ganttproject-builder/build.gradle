@@ -155,7 +155,7 @@ task runApp(type: JavaExec, dependsOn: distBin) {
     workingDir = 'dist-bin'
     classpath = (fileTree(dir: 'dist-bin', includes: ['eclipsito.jar']) + files('dist-bin'))
     main = 'com.bardsoftware.eclipsito.Launch'
-    args '--verbosity', '4', '--app', 'net.sourceforge.ganttproject.GanttProject', '--version-dirs', "plugins"
+    args '--verbosity', '4', '--app', 'net.sourceforge.ganttproject.GanttProject', '--version-dirs', "plugins", "/opt/ganttproject/ganttproject-builder/HouseBuildingSample.gan"
     jvmArgs '-ea'
 }
 task debugApp(type: JavaExec, dependsOn: distBin) {

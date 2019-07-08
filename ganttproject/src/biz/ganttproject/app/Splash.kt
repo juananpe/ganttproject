@@ -38,7 +38,7 @@ fun showAsync(): CompletableFuture<Runnable> {
   JFXPanel()
   val result = CompletableFuture<Runnable>()
   Platform.runLater {
-    val splash1 = ImageView(Image(GanttProject::class.java.getResourceAsStream("/icons/splash.png")))
+   /* val splash1 = ImageView(Image(GanttProject::class.java.getResourceAsStream("/icons/splash.png")))
     val splashLayout = VBox()
     splashLayout.children.addAll(splash1)
     splashLayout.effect = DropShadow()
@@ -55,7 +55,7 @@ fun showAsync(): CompletableFuture<Runnable> {
       Platform.runLater {
         stage.hide()
       }
-    })
+    })*/
   }
   return result
 }
