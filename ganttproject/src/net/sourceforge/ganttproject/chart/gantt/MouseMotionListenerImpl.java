@@ -38,10 +38,12 @@ import net.sourceforge.ganttproject.chart.mouse.MouseMotionListenerBase;
 import net.sourceforge.ganttproject.gui.UIFacade;
 import net.sourceforge.ganttproject.language.GanttLanguage;
 import net.sourceforge.ganttproject.task.Task;
+import net.sourceforge.ganttproject.util.StringUtils;
 
 class MouseMotionListenerImpl extends MouseMotionListenerBase {
   private final ChartComponentBase myChartComponent;
   private GanttChartController myChartController;
+  private final int WRAPLENGTH = 80;
 
   public MouseMotionListenerImpl(GanttChartController chartImplementation, ChartModelImpl chartModel,
       UIFacade uiFacade, ChartComponentBase chartComponent) {
@@ -93,7 +95,8 @@ class MouseMotionListenerImpl extends MouseMotionListenerBase {
       myChartComponent.setCursor(ChartComponentBase.HAND_CURSOR);
       myChartController.showTooltip(e.getX(), e.getY(),
           GanttLanguage.getInstance().formatText(
-              "task.notesTooltip.pattern", taskUnderPoint.getNotes().replace("\n", "<br>")));
+              "task.notesTooltip.pattern",
+              StringUtils.wrap(taskUnderPoint.getNotes(), WRAPLENGTH).replace("\n", "<br>")));
     }
     else {
       myChartComponent.setCursor(ChartComponentBase.HAND_CURSOR);

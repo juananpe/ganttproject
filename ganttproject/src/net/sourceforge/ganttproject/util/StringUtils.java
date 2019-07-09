@@ -103,5 +103,41 @@ public class StringUtils {
     return false;
   }
 
+  /**
+   * Wrap a string every wrapLength characters.
+   * Source: https://stackoverflow.com/a/5694876/243532
+   *
+   * @param str the String to wrap
+   * @param wrapLength wrap every wrapLength characters
+   * @return the wrapped String
+   */
+  public static String wrap(String str, int wrapLength) {
+    int offset = 0;
+    StringBuilder resultBuilder = new StringBuilder();
+
+    while ((str.length() - offset) > wrapLength) {
+      if (str.charAt(offset) == ' ') {
+        offset++;
+        continue;
+      }
+
+      int spaceToWrapAt = str.lastIndexOf(' ', wrapLength + offset);
+      // if the next string with length maxLength doesn't contain ' '
+      if (spaceToWrapAt < offset) {
+        spaceToWrapAt = str.indexOf(' ', wrapLength + offset);
+        // if no more ' '
+        if (spaceToWrapAt < 0) {
+          break;
+        }
+      }
+
+      resultBuilder.append(str.substring(offset, spaceToWrapAt));
+      resultBuilder.append("\n");
+      offset = spaceToWrapAt + 1;
+    }
+
+    resultBuilder.append(str.substring(offset));
+    return resultBuilder.toString();
+  }
 
 }
