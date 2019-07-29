@@ -40,6 +40,9 @@ allprojects {
         maven {
             url "http://sandec.bintray.com/repo"
         }
+	maven {
+	    url "https://dl.bintray.com/kotlin/kotlin-eap/"
+	}
 
     }
     apply plugin: 'java'
