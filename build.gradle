@@ -35,12 +35,15 @@ allprojects {
         providedCompile
     }
     repositories {
-        mavenCentral()
         jcenter()
+   maven {
+		url 'https://dl.bintray.com/kotlin/kotlin-eap'
+        }
         maven {
             url "http://sandec.bintray.com/repo"
         }
 
+        mavenCentral()
     }
     apply plugin: 'java'
     apply plugin: 'eclipse'
