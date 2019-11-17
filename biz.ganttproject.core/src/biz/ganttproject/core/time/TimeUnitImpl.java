@@ -52,6 +52,10 @@ public class TimeUnitImpl implements TimeUnit {
   @Override
   public int getAtomCount(TimeUnit atomUnit) {
     Composition composition = myGraph.getComposition(this, atomUnit);
+
+    if (atomUnit.getName()=="day" && this.getName()=="hour")
+      return 24;
+
     if (composition == null) {
       throw new RuntimeException("Failed to find a composition of time unit=" + this + " from time unit=" + atomUnit);
     }
