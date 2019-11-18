@@ -30,14 +30,14 @@ public class HourTextFormatter extends CachingTextFormatter implements TimeForma
   @Override
   protected TimeUnitText[] createTimeUnitText(Date adjustedLeft) {
     return new TimeUnitText[] { new TimeUnitText(MessageFormat.format("{0}",
-        new Object[] { "" + adjustedLeft.getDate() })) };
+        new Object[] { "" + adjustedLeft.getHours() })) };
   }
 
   @Override
   public TimeUnitText[] format(Offset curOffset) {
-    if ((curOffset.getDayMask() & (GPCalendar.DayMask.WORKING)) == 0) {
-      return TimeFormatters.EMPTY_TEXT;
-    }
+//    if ((curOffset.getDayMask() & (GPCalendar.DayMask.WORKING)) == 0) {
+//      return TimeFormatters.EMPTY_TEXT;
+//    }
     return super.format(curOffset);
   }
 }
