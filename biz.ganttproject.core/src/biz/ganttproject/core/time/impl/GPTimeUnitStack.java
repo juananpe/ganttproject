@@ -23,6 +23,9 @@ public class GPTimeUnitStack implements TimeUnitStack {
   private static TimeUnitGraph ourGraph = new TimeUnitGraph();
 
   public static final TimeUnit HOUR; // = ourGraph.createAtomTimeUnit("hour");
+
+  // public static final TimeUnit HOURDAY;
+
   public static final TimeUnit DAY;
 
   public static final TimeUnit WEEK;
@@ -38,15 +41,19 @@ public class GPTimeUnitStack implements TimeUnitStack {
   static {
     TimeUnit atom = ourGraph.createAtomTimeUnit("atom");
     HOUR = ourGraph.createDateFrameableTimeUnit("hour", atom, 1, new FramerImpl(Calendar.HOUR));
+    // HOURDAY = ourGraph.createDateFrameableTimeUnit("day", HOUR, 24, new FramerImpl(Calendar.DATE));
     DAY = ourGraph.createDateFrameableTimeUnit("day", HOUR, 24, new FramerImpl(Calendar.DATE));
     MONTH = ourGraph.createTimeUnitFunctionOfDate("month", DAY, new FramerImpl(Calendar.MONTH));
-    WEEK = ourGraph.createDateFrameableTimeUnit("week", DAY, 24*7, new WeekFramerImpl());
+    WEEK = ourGraph.createDateFrameableTimeUnit("week", DAY, 7, new WeekFramerImpl());
     QUARTER = ourGraph.createTimeUnitFunctionOfDate("quarter", MONTH, new FramerImpl(Calendar.MONTH));
     YEAR = ourGraph.createTimeUnitFunctionOfDate("year", DAY, new FramerImpl(Calendar.YEAR));
   }
 
   public GPTimeUnitStack() {
-    myPairs = new TimeUnitPair[] { new TimeUnitPair(DAY, HOUR, this, 95), new TimeUnitPair(WEEK, DAY, this, 65), new TimeUnitPair(WEEK, DAY, this, 55),
+    myPairs = new TimeUnitPair[] {
+        new TimeUnitPair(DAY, HOUR, this, 95),
+        new TimeUnitPair(WEEK, DAY, this, 65),
+        new TimeUnitPair(WEEK, DAY, this, 55),
         new TimeUnitPair(MONTH, DAY, this, 44), new TimeUnitPair(MONTH, DAY, this, 34),
         new TimeUnitPair(MONTH, WEEK, this, 24), new TimeUnitPair(MONTH, WEEK, this, 21),
         new TimeUnitPair(YEAR, WEEK, this, 13), new TimeUnitPair(YEAR, WEEK, this, 8),
