@@ -100,14 +100,14 @@ public class AbstractChartImplementation implements TimelineChart, ZoomListener 
         return;
       }
       ChartModelBase chartModel = getChartModel();
-      if (chartModel.getBottomUnit() == GPTimeUnitStack.DAY) {
+      if (chartModel.getBottomUnit() == GPTimeUnitStack.DAY || chartModel.getBottomUnit() == GPTimeUnitStack.HOUR) {
         return;
       }
       Offset offset = chartModel.getOffsetAt(myHoverPoint.x);
       g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .4f));
       Font chartFont = chartModel.getChartUIConfiguration().getChartFont();
       g2.setFont(chartFont.deriveFont(0.9f * chartFont.getSize()));
-      g2.setColor(Color.BLACK);
+      g2.setColor(Color.RED);
       int offsetMidPx = (offset.getStartPixels() + offset.getOffsetPixels()) / 2;
       int headerBottomPx = chartModel.getChartUIConfiguration().getHeaderHeight();
       int pointerSize = (int)(chartModel.getChartUIConfiguration().getBaseFontSize() * 0.6f);
