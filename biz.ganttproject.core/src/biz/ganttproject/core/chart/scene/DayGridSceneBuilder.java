@@ -70,10 +70,10 @@ public class DayGridSceneBuilder extends AbstractSceneBuilder {
     if (myRedlineOption.isChecked()) {
       renderLine(new Date(), "timeline.today", 2, OffsetLookup.BY_END_DATE);
     }
-    if (isProjectBoundariesOptionOn()) {
-      renderLine(myInputApi.getProjectStart(), "timeline.project_start", -2, OffsetLookup.BY_START_DATE);
-      renderLine(myInputApi.getProjectEnd(), "timeline.project_end", 2, OffsetLookup.BY_START_DATE);
-    }
+//    if (isProjectBoundariesOptionOn()) {
+//      renderLine(myInputApi.getProjectStart(), "timeline.project_start", -2, OffsetLookup.BY_START_DATE);
+//      renderLine(myInputApi.getProjectEnd(), "timeline.project_end", 2, OffsetLookup.BY_START_DATE);
+//    }
     renderNonWorkingDayColumns();
   }
 
