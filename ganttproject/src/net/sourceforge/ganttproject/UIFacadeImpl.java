@@ -247,6 +247,15 @@ class UIFacadeImpl extends ProgressProvider implements UIFacade {
     myOptions.setTitled(false);
 
     myLogoOption = new DefaultFileOption("ui.logo");
+    myLogoOption.addChangeValueListener(new ChangeValueListener() {
+      @Override
+      public void changeValue(ChangeValueEvent event) {
+        // Gantt  ChartTabContentPanel replaceImagePanel
+
+        if (event.getOldValue()!=null && event.getOldValue().equals(event.getNewValue()))
+          ((GanttTree2)myFallbackDelegate.getTaskTree()).getMyProject().getGanttChartTabContent().replaceImagePanel(getLogo());
+      }
+    });
     myLogoOptions = new GPOptionGroup("ui2", myLogoOption);
     myLogoOptions.setTitled(false);
     addOptions(myOptions);

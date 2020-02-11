@@ -48,6 +48,13 @@ abstract class ChartTabContentPanel {
   private Supplier<Integer> myHeaderHeight;
   private GanttImagePanel myImagePanel;
 
+  void replaceImagePanel(Image image){
+    // int defaultScaledHeight = (int)(UIFacade.DEFAULT_LOGO.getIconHeight() * myUiFacade.getDpiOption().getValue() / (1f * UIFacade.DEFAULT_DPI));
+    myImagePanel.setIcon(new ImageIcon(image.getScaledInstance(-1, 300, Image.SCALE_DEFAULT)));
+  //  myImagePanel.setScale(myUiFacade.getDpiOption().getValue() / (1f * UIFacade.DEFAULT_DPI));
+    // myImageHeight = myImagePanel.getPreferredSize().height;
+  }
+
   ChartTabContentPanel(IGanttProject project, UIFacade workbenchFacade, TimelineChart chart) {
     NavigationPanel navigationPanel = new NavigationPanel(project, chart, workbenchFacade);
     ZoomingPanel zoomingPanel = new ZoomingPanel(workbenchFacade, chart);

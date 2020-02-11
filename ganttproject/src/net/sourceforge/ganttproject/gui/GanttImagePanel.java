@@ -27,7 +27,6 @@ public class GanttImagePanel extends JLabel {
 
   public GanttImagePanel(Image image, int width, int height) {
     super("", new ImageIcon(image.getScaledInstance(-1, height, Image.SCALE_DEFAULT)), LEADING);
-
     myOriginalSize = new Dimension(getIcon().getIconWidth(), getIcon().getIconHeight());
     setPreferredSize(myOriginalSize);
     setMinimumSize(myOriginalSize);
